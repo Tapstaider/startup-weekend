@@ -26,6 +26,9 @@ var User = F.sequelize.define('user', {
   password: {
     type: F.Sequelize.STRING,
     allowNull: false
+  },
+  consumption_updated_at: {
+    type: F.Sequelize.DATE
   }
 }, {
   freezeTableName: true
