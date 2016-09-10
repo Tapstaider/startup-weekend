@@ -29,7 +29,7 @@ export class MyApp {
             }, failure => {
                 console.log("ttii");
                 console.log(failure)
-            });
+            }).subscribe((data) => console.log(data),(error) => console.error(error),() => console.log('FINISHED'));
 
             NFC.addNdefFormatableListener(
                 onSuccess => {
@@ -37,7 +37,7 @@ export class MyApp {
                 },
                 onFailure => {
                     console.log(onFailure);
-                });
+                }).subscribe((data) => console.log(data),(error) => console.error(error),() => console.log('FINISHED'));
 
 
             NFC.addTagDiscoveredListener('text/pg'
@@ -45,7 +45,7 @@ export class MyApp {
                     console.log(onSuccess);
                 }, onFailure => {
                     console.log(onFailure);
-                });
+                }).subscribe((data) => console.log(data),(error) => console.error(error),() => console.log('FINISHED'));
 
 
             NFC.enabled().then(e => {
