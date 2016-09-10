@@ -16,4 +16,8 @@ lis l'uuid du tag nfc
 */
 uint32_t lire_id_tag(PN532 nfc);
 
+void ecrire_adresse_mac(PN532 nfc);
+
+uint8_t* lire_adresse_mac(PN532 nfc);
+
 #endif
