@@ -3,7 +3,7 @@ import {Platform, ionicBootstrap} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {TabsPage} from './pages/tabs/tabs';
 import {BluetoothSerial} from 'ionic-native';
-import {NFC, Ndef} from 'ionic-native';
+import {CoasterNfc} from './services/coasternfc';
 
 const BTADDRESS = "20:16:05:05:47:87";
 
@@ -22,39 +22,7 @@ export class MyApp {
             // Here you can do any higher level native things you might need.
             StatusBar.styleDefault();
 
-            NFC.addNdefListener(nfcEvent => {
-                console.log("toto");
-                console.log(nfcEvent.tag);
-
-            }, failure => {
-                console.log("ttii");
-                console.log(failure)
-            }).subscribe((data) => console.log(data),(error) => console.error(error),() => console.log('FINISHED'));
-
-            NFC.addNdefFormatableListener(
-                onSuccess => {
-                    console.log(onSuccess);
-                },
-                onFailure => {
-                    console.log(onFailure);
-                }).subscribe((data) => console.log(data),(error) => console.error(error),() => console.log('FINISHED'));
-
-
-            NFC.addTagDiscoveredListener('text/pg'
-                , onSuccess => {
-                    console.log(onSuccess);
-                }, onFailure => {
-                    console.log(onFailure);
-                }).subscribe((data) => console.log(data),(error) => console.error(error),() => console.log('FINISHED'));
-
-
-            NFC.enabled().then(e => {
-                console.log(e);
-            }).catch(e => console.error(e));
-
-            NFC.showSettings().then(e => {
-                console.log(e);
-            }).catch(e => console.error(e));
+            CoasterNfc.readNfc();
 
             function deviceAppear(dev) {
                 if (dev.address === BTADDRESS) {
@@ -82,21 +50,21 @@ export class MyApp {
             }
 
             // BluetoothSerial.isEnabled().then(() => {
-            // 	BluetoothSerial.setDeviceDiscoveredListener().subscribe(
-            // 		device => deviceAppear(device),
-            // 		error => console.error(error),
-            // 		() => console.log("FINISHED")
-            // 	);
-            // 	deviceDiscovery();
+            //     BluetoothSerial.setDeviceDiscoveredListener().subscribe(
+            //         device => deviceAppear(device),
+            //         error => console.error(error),
+            //         () => console.log("FINISHED")
+            //     );
+            //     deviceDiscovery();
             // }).catch(() => {
-            // 	BluetoothSerial.enable().then(() => {
-            // 		BluetoothSerial.setDeviceDiscoveredListener().subscribe(
-            // 			device => deviceAppear(device),
-            // 			error => console.error(error),
-            // 			() => console.log("FINISHED")
-            // 		);
-            // 		deviceDiscovery();
-            // 	}).catch(error => console.error(error));
+            //     BluetoothSerial.enable().then(() => {
+            //         BluetoothSerial.setDeviceDiscoveredListener().subscribe(
+            //             device => deviceAppear(device),
+            //             error => console.error(error),
+            //             () => console.log("FINISHED")
+            //         );
+            //         deviceDiscovery();
+            //     }).catch(error => console.error(error));
             // });
         });
     }
