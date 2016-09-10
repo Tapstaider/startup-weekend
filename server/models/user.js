@@ -1,6 +1,6 @@
 // Création du modèle de la table User.
 
-var User = F.sequelize.define('user', {
+var User = F.sequelize.define('_user', {
   id: {
     type: F.Sequelize.BIGINT,
     allowNull: false,
