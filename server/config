@@ -9,3 +9,11 @@ mail.smtp.options               : {"secure":false,"port":25,"user":"","password"
 mail.address.from               : your@yourwebsite.com
 mail.address.reply              : your@yourwebsite.com
 mail.address.bcc                :
+
+// Database settings
+database.name : tapstaid
+database.username : tapstaider
+database.password : 
+database.host : localhost
+database.dialect : postgres
+database.pool : {"max": 5, "min": 0, "idle": 10000}
