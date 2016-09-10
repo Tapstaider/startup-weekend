@@ -8,14 +8,14 @@ import {CoasterNfc} from '../../services/coasternfc';
 })
 export class HomePage {
 
-    private _coasterNfc:CoasterNfc;
-    public _tag:string;
+    private coasterNfc:CoasterNfc;
+    tag:string;
 
-    constructor(private navCtrl:NavController, private coasterNfc:CoasterNfc) {
-        this._coasterNfc = coasterNfc;
-        this._coasterNfc.render(data => {
+    constructor(private navCtrl:NavController, private cn:CoasterNfc) {
+        this.coasterNfc = cn;
+        this.coasterNfc.render(data => {
             console.log('home', data);
-            this._tag = data;
+            this.tag = data;
         }, error => {
             console.error(error);
         });

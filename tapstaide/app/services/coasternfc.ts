@@ -25,4 +25,3 @@ export class CoasterNfc {
             .subscribe(successCallback, errorCallback, () => console.log('FINISHED'));
     }
 }
-
