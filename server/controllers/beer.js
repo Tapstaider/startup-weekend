@@ -1,8 +1,26 @@
 "use strict";
 
 exports.install = function () {
+  F.route('/mybeer/{id}', my_beer, ['get']);
     F.restful('/beers/', [], json_beer_query, json_beer_get, json_beer_save, json_beer_delete);
 };
+
+function my_beer(id){
+  let self = this,
+  Beer = MODEL('beer').Schema,
+  Drink_rfid = MODEL('drink_rfid').Schema;
+
+  Drink_rfid.findById(id).then(function(drink){
+    framework.logger.log('drink ====================> ' + drink);
+    Beer.findById(drink.id_beer).then(function(beer){
+      self.res.send(200, {success: true, beer: beer}, 'application/json');
+    }).catch(function(error){
+      ;
+    });
+  }).catch(function(error){
+    ;
+  });
+}
 
 /**
  * Description: Get beers
