@@ -5,7 +5,11 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'build/pages/winepage/winepage.html'
 })
 export class WinePage {
-
+	capacity = {
+		true: '50cl',
+		false: '30cl'
+	};
+	capacityToggle = true;
   constructor(public navCtrl: NavController) {
   }
 }

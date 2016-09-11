@@ -5,7 +5,11 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'build/pages/hotpage/hotpage.html'
 })
 export class HotPage {
-
+	capacity = {
+		true: '50cl',
+		false: '30cl'
+	};
+	capacityToggle = true;
   constructor(public navCtrl: NavController) {
   }
 }

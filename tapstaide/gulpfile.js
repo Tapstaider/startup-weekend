@@ -33,15 +33,17 @@ var copyHTML = require('ionic-gulp-html-copy');
 var copyFonts = require('ionic-gulp-fonts-copy');
 var copyScripts = require('ionic-gulp-scripts-copy');
 var tslint = require('ionic-gulp-tslint');
+var imageCopyOptimize = require('ionic-gulp-image-task');
 
 var isRelease = argv.indexOf('--release') > -1;
 
 gulp.task('watch', ['clean'], function(done){
   runSequence(
-    ['sass', 'html', 'fonts', 'scripts'],
+    ['sass', 'html', 'fonts', 'scripts', 'image'],
     function(){
       gulpWatch('app/**/*.scss', function(){ gulp.start('sass'); });
       gulpWatch('app/**/*.html', function(){ gulp.start('html'); });
+	  gulpWatch('app/**/*.png', function(){ gulp.start('image'); });
       buildBrowserify({ watch: true }).on('end', done);
     }
   );
@@ -49,7 +51,7 @@ gulp.task('watch', ['clean'], function(done){
 
 gulp.task('build', ['clean'], function(done){
   runSequence(
-    ['sass', 'html', 'fonts', 'scripts'],
+    ['sass', 'html', 'fonts', 'scripts', 'image'],
     function(){
       buildBrowserify({
         minify: isRelease,
@@ -72,3 +74,6 @@ gulp.task('clean', function(){
   return del('www/build');
 });
 gulp.task('lint', tslint);
+gulp.task('image', function(){
+  return imageCopyOptimize({ src: 'app/img/**/*', dest: 'www/build/img'});
+});
