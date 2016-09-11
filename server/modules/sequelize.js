@@ -28,7 +28,7 @@ exports.install = function(){
   // Connection à la base de données grâce à Sequelize.
   var Sequelize = require('sequelize');
   F.Sequelize = Sequelize;
-  F.sequelize = new Sequelize(database_name, username_database, passeword_database, {
+  F.sequelize = new Sequelize(database_name, username_database, password_database, {
     host: host_database,
     dialect: dialect_database,
     pool : pool_database,
