@@ -1,1 +1,19 @@
-<h3>Consommation</h3>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+    	<h3><i class="fa fa-angle-right"></i> Consommation</h3>
+  		<div class="row mt">
+  		<div class="col-lg-4" ng-repeat="(nomBiere,quantiteBiere) in bieres">
+            <div class="content-panel" style="margin-bottom: 10px">
+                
+                  <div style="text-align:center;">
+                    <img src="{{'image/beer/'+nomBiere+'.png'}}" alt="">
+                    <h4>{{nomBiere}}</h4>
+                    <p class="margin-left">{{quantiteBiere}} bières</p>
+                    <img src="" alt="">
+                  </div>
+                </div>
+         </div><!-- /col-lg-4 -->
+  	</div><!-- /row -->
+	</section><! --/wrapper -->
+</section><!-- /MAIN CONTENT -->
