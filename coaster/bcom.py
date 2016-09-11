@@ -9,4 +9,7 @@ size = 1024
 
 s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
 s.connect((host, port))
-data = client.recv(size)
+data = s.recv(size)
+while data:
+	print(data)
+	data = s.recv(size)
