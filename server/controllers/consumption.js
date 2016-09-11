@@ -5,6 +5,8 @@ exports.install = function () {
     F.route('/count_consumptions/', count_consumptions, ['get']);
 
     F.restful('/consumptions/', [], json_consumption_query, json_consumption_get, json_consumption_save, json_consumption_delete);
+    F.cors('/add_consumption/{rfid}', [ 'POST', '*'], true);
+    F.cors('/count_consumptions/', [ 'GET', '*'], true);
 };
 
 function add_consumption(rfid){

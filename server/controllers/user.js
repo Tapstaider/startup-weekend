@@ -2,6 +2,7 @@
 
 exports.install = function () {
     F.restful('/users/', [], json_user_query, json_user_get, json_user_save, json_user_delete);
+    F.cors('/users/', [ 'GET', 'PUT', 'POST', 'DELETE', '*'], true);
 };
 
 /**
