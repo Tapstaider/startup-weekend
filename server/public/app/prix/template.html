@@ -3,15 +3,14 @@
     <section class="wrapper">
     	<h3><i class="fa fa-angle-right"></i> Prix</h3>
   		<div class="row mt">
-  		<div class="col-lg-4" ng-repeat="(nomBiere,quantiteBiere) in bieres">
+  		<div class="col-lg-4" ng-repeat="(nomBiere,prixBiere) in bieres">
             <div class="content-panel" style="margin-bottom: 10px">
                 
                   <div style="text-align:center;">
                     <img src="{{'image/beer/'+nomBiere+'.png'}}" alt="">
                     <h4>{{nomBiere}}</h4>
-                    <p class="margin-left">{{quantiteBiere}} bières</p>
                     <a href="" ng-click="incrementeBiere(nomBiere)" class="fa fa-arrow-up" aria-hidden="true" style="color: black"></a>
-                  <p class="margin-left" style="padding-right: 10px">6</p>
+                  <p class="margin-left" style="padding-right: 10px">{{prixBiere}}</p>
                   <a href="" ng-click="decrementeBiere(nomBiere)" class="fa fa-arrow-down" aria-hidden="true" style="color: black"></a>
                     <img src="" alt="">
                   </div>

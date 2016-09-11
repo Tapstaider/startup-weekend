@@ -13,8 +13,8 @@ mail.address.bcc                :
 // Database settings
 database.name : tapstaid
 database.username : tapstaider
-database.password :
+database.password :supertomate
 database.host : localhost
-database.dialect : sqlite
+database.dialect : postgres
 database.pool : {"max": 5, "min": 0, "idle": 10000}
 database.storage.path : 
