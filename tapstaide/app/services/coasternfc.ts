@@ -1,27 +1,19 @@
 import {NFC} from 'ionic-native';
 import {Injectable} from "@angular/core";
+import {Platform} from 'ionic-angular';
 
 @Injectable()
 export class CoasterNfc {
-
-    static readNfc() {
-
-        NFC.addNdefFormatableListener()
-            .subscribe((data) => {
-                console.log(data);
-                var int32View = new Int32Array(data.tag.id, 8);
-                console.log('2', int32View)
-            }, (error) => console.error(error), () => console.log('FINISHED'));
-
-        NFC.addTagDiscoveredListener('ndef-formatable')
-            .subscribe((data) => console.log('1', data), (error) => console.error(error), () => console.log('FINISHED'));
-    }
-
+	private platform : Platform;
+	constructor(private pf:Platform) {
+		this.platform = pf;
+	}
     public render(successCallback, errorCallback) {
-        NFC.addNdefFormatableListener()
-            .subscribe(successCallback, errorCallback, () => console.log('FINISHED'));
-
-        NFC.addTagDiscoveredListener('ndef-formatable')
-            .subscribe(successCallback, errorCallback, () => console.log('FINISHED'));
+		this.platform.ready().then(() => {
+			NFC.addNdefFormatableListener(
+				(data) => console.log(data),
+				(error) => console.error(error)
+			).subscribe(successCallback,errorCallback,() => console.log('FINISHED'));
+		});
     }
 }

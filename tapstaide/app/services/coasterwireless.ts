@@ -1,8 +1,6 @@
 import {Platform} from 'ionic-angular';
 import { BluetoothSerial } from 'ionic-native';
 
-
-
 export class CoasterWireless {
   constructor(private platform: Platform) {
     platform.ready().then(() => {
@@ -54,5 +52,3 @@ export class CoasterWireless {
 private BLUETOOTHPIN = "1234";
 private BTADDRESS= "20:16:05:05:47:87";
 }
-
-
