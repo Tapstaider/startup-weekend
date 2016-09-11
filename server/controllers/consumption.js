@@ -1,8 +1,50 @@
 "use strict";
 
 exports.install = function () {
+    F.route('/add_consumption/{rfid}', add_consumption, ['post']);
+
     F.restful('/consumptions/', [], json_consumption_query, json_consumption_get, json_consumption_save, json_consumption_delete);
 };
+
+function add_consumption(rfid){
+
+    let self = this,
+        Drink_rfid = MODEL('drink_rfid').Schema,
+        Consumption = MODEL('consumption').Schema;
+
+    Drink_rfid.findOne({
+      where: {
+        rfid: rfid
+      }
+    }).then(function(drink){
+      if(drink){
+        // TODO : ajouter la conso. Pour démo swlille, on l'associe à l'utilisateur 1
+        let consumption = Consumption.build({"id_user": 1, "id_drink_rfid" : drink.id});
+        consumption.save().then(function(consumptionSaved){
+          if(consumptionSaved){
+              framework.logger.debug('Added new consumption : ' + consumptionSaved);
+              self.res.send(201, {
+                  success: true,
+                  message: 'Added new consumption : ' + consumptionSaved,
+                  consumption: consumptionSaved
+              }, 'application/json');
+          } else {
+              framework.logger.error('No consumption');
+              self.res.send(404, {success: false, message: 'No consumption'}, 'application/json');
+          }
+        }).catch(function(error){
+          framework.logger.error(error);
+          self.res.send(404, {success: false, message: error}, 'application/json');
+        });
+      } else {
+        framework.logger.error('No drink');
+        self.res.send(404, {success: false, message: 'No drink'}, 'application/json');
+      }
+    }).catch(function(error){
+      framework.logger.error(error);
+      self.res.send(404, {success: false, message: error}, 'application/json');
+    }); 
+}
 
 /**
  * Description: Get consumptions
