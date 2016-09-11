@@ -1,22 +1,25 @@
 import {Component} from '@angular/core';
-import {HomePage} from '../home/home';
-import {AboutPage} from '../about/about';
-import {ContactPage} from '../contact/contact';
+import {SoftPage} from '../softpage/softpage';
+import {WinePage} from '../winepage/winepage';
+import {BeerPage} from '../beerpage/beerpage';
+import {HotPage} from '../hotpage/hotpage';
 
 @Component({
   templateUrl: 'build/pages/tabs/tabs.html'
 })
 export class TabsPage {
 
-  private tab1Root: any;
-  private tab2Root: any;
-  private tab3Root: any;
+  private tabsoft: any;
+  private tabwines: any;
+  private tabbeers: any;
+  private tabhot: any;
 
   constructor() {
     // this tells the tabs component which Pages
     // should be each tab's root Page
-    this.tab1Root = HomePage;
-    this.tab2Root = AboutPage;
-    this.tab3Root = ContactPage;
+    this.tabsoft = SoftPage;
+    this.tabwines = WinePage;
+    this.tabbeers = BeerPage;
+	this.tabhot = HotPage;
   }
 }

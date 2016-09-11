@@ -2,5 +2,13 @@
   "name": "Tapstaide",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
 }

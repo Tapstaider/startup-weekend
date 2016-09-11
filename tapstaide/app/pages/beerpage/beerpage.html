@@ -1,0 +1,21 @@
+<ion-header dark>
+  <ion-navbar dark>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Carte</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="page1">
+
+	<ion-list>
+
+	  <ion-item>
+	    <ion-label>{{capacity[capacityToggle]}}</ion-label>
+	    <ion-toggle [(ngModel)]="capacityToggle"></ion-toggle>
+	  </ion-item>
+
+	</ion-list>
+</ion-content>
