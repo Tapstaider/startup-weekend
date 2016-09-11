@@ -2,6 +2,7 @@
 
 exports.install = function () {
     F.route('/add_consumption/{rfid}', add_consumption, ['post']);
+    F.route('/count_consumptions/', count_consumptions, ['get']);
 
     F.restful('/consumptions/', [], json_consumption_query, json_consumption_get, json_consumption_save, json_consumption_delete);
 };
@@ -43,7 +44,23 @@ function add_consumption(rfid){
     }).catch(function(error){
       framework.logger.error(error);
       self.res.send(404, {success: false, message: error}, 'application/json');
-    }); 
+    });
+}
+
+function count_consumptions(){
+    let self = this,
+    Consumption = MODEL('consumption').Schema;
+
+    Consumption.findAll({
+      attributes: ['id_drink_rfid',
+    F.sequelize.fn('count', F.sequelize.col('id'))],
+    group: ["id_drink_rfid"]
+  }).then(function(docs){
+    self.res.send(200, {success: true, consumptions: docs}, 'application/json');
+  }).catch(function(error){
+    framework.logger.error(error);
+    self.res.send(400, {success: false, message: "Error occured while getting the consumptions"}, 'application/json');
+  });
 }
 
 /**
