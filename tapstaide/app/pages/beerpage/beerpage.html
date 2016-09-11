@@ -17,5 +17,12 @@
 	    <ion-toggle [(ngModel)]="capacityToggle"></ion-toggle>
 	  </ion-item>
 
+	  <ion-item *ngFor="let beer of Beer">
+		<ion-avatar item-left>
+		  <img [src]="beer.img">
+		</ion-avatar>
+		<h2>{{beer.name}}</h2>
+		<h3>{{capacityToggle?beer.price_50cl:beer.price_25cl}}</h3>
+	  </ion-item>
 	</ion-list>
 </ion-content>
