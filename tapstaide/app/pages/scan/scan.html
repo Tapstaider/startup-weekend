@@ -1,0 +1,15 @@
+<ion-header dark>
+  <ion-navbar dark>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Scan</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="scanPage">
+  <div>
+    <h3 class="scanPage-label">Scan the coaster</h3>
+    <ion-spinner *ngIf="loading === true" name="bubbles"></ion-spinner>
+  </div>
+</ion-content>

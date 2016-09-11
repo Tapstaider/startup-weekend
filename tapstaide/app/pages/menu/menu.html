@@ -4,11 +4,13 @@
   </ion-toolbar>
   <ion-content>
     <ion-list>
-		<button menuClose ion-item><ion-icon name="search"></ion-icon> Search</button>
-		<button menuClose ion-item><ion-icon name="compass"></ion-icon> Tes avantages</button>
-		<button menuClose ion-item>Ton Sous-Bock</button>
-		<button menuClose ion-item>Tes Badges</button>
-		<button menuClose ion-item>Settings</button>
+      <button menuClose ion-item><ion-icon name="search"></ion-icon> Search</button>
+      <button menuClose *ngIf="rootPage !== scanPage" ion-item (click)="openPage(scanPage)"><ion-icon ios="ios-wifi" md="md-wifi"></ion-icon> Scan</button>
+      <button menuClose *ngIf="rootPage === scanPage" ion-item (click)="openPage(defaultPage)"><ion-icon ios="ios-wifi" md="md-wifi"></ion-icon> Scan</button>
+      <button menuClose ion-item><ion-icon name="compass"></ion-icon> Tes avantages</button>
+      <button menuClose ion-item>Ton Sous-Bock</button>
+      <button menuClose ion-item>Tes Badges</button>
+      <button menuClose ion-item>Settings</button>
     </ion-list>
   </ion-content>
 </ion-menu>
