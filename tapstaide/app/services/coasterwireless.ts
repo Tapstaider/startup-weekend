@@ -1,25 +1,34 @@
 import {Platform} from 'ionic-angular';
-import { BluetoothSerial } from 'ionic-native';
+import {BluetoothSerial} from 'ionic-native';
+import {Injectable} from "@angular/core";
+import {CoasterWebservice} from './coasterWebservice'
 
-
-
+@Injectable()
 export class CoasterWireless {
-  constructor(private platform: Platform) {
+  
+  private coasterWebService:CoasterWebservice;
+  
+  constructor(private platform:Platform, private cwb:CoasterWebservice) {
+    
+    this.coasterWebService = cwb;
+    
     platform.ready().then(() => {
       BluetoothSerial.isEnabled().then(() => {
-        BluetoothSerial.setDeviceDiscoveredListener().subscribe(
-          device => this.deviceAppear(device),
-          error => console.error(error),
-          () => console.log("FINISHED")
-        );
+        this.deviceDiscoveredListener()
+          .then(listener => {
+            this.deviceDiscoveredObservable(listener);
+          }).catch(error => {
+          console.error(error);
+        });
         this.deviceDiscovery();
       }).catch(() => {
         BluetoothSerial.enable().then(() => {
-          BluetoothSerial.setDeviceDiscoveredListener().subscribe(
-            device => this.deviceAppear(device),
-            error => console.error(error),
-            () => console.log("FINISHED")
-          );
+          this.deviceDiscoveredListener()
+            .then(listener => {
+              this.deviceDiscoveredObservable(listener);
+            }).catch(error => {
+            console.error(error);
+          });
           this.deviceDiscovery();
         }).catch(error => console.error(error));
       });
@@ -28,10 +37,10 @@ export class CoasterWireless {
 
   private deviceDiscovery() {
     BluetoothSerial.discoverUnpaired().then(() => {
-      setTimeout(this.deviceDiscovery,2000);
+      setTimeout(this.deviceDiscovery, 2000);
     }).catch(error => {
       console.error(error);
-      setTimeout(this.deviceDiscovery,2000);
+      setTimeout(this.deviceDiscovery, 2000);
     });
   }
 
@@ -39,8 +48,19 @@ export class CoasterWireless {
     if (dev.address === this.BTADDRESS) {
       console.log("FOUND COASTER!!");
       BluetoothSerial.pair(dev.address, this.BLUETOOTHPIN).then(() => {
-        BluetoothSerial.connect(dev.address).subscribe(
-          (res) => console.log(res),
+        BluetoothSerial.connect(dev.address).subscribe(() => {
+            setTimeout(() => {
+              BluetoothSerial
+                .available()
+                .then(() => {
+                    BluetoothSerial.read()
+                      .then(s => coasterWebService.send(s))
+                      .catch(e => console.error(e))
+                  }
+                )
+                .catch(e => console.error(e));
+            }, 2000);
+          },
           (error) => console.error(error),
           () => console.log("FINISHED CONNECTING")
         );
@@ -51,8 +71,20 @@ export class CoasterWireless {
     }
   }
 
-private BLUETOOTHPIN = "1234";
-private BTADDRESS= "20:16:05:05:47:87";
+  public deviceDiscoveredListener() {
+    return new Promise((resolve) => {
+      resolve(BluetoothSerial.setDeviceDiscoveredListener());
+    });
+  }
+
+  public deviceDiscoveredObservable(observable) {
+    observable.subscribe(
+      device => this.deviceAppear(device),
+      error => console.error(error),
+      () => console.log("FINISHED")
+    );
+  }
+
+  private BLUETOOTHPIN = "1234";
+  private BTADDRESS = "20:16:05:05:47:87";
 }
-
-
