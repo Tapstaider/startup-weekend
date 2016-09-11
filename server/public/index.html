@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+	<meta charset="utf-8" />
+	<script src="lib/angular-1.5.8/angular.min.js"></script>
+	<script src="lib/angular-1.5.8/angular-route.min.js"></script>
+	<script src="app/app.js"></script>
+	<script src="app/conso/controller.js"></script>
+	<script src="app/conso/service.js"></script>
+	<script src="app/prix/controller.js"></script>
+	<script src="app/prix/service.js"></script>
+</head>
+<body>
+	<a class="btn btn-primary" ng-href="#/conso">Mode conso</a>
+	<a class="btn btn-danger" ng-href="#/prix">Mode prix</a>
+	<div ng-view>
+</body>
+</html>
