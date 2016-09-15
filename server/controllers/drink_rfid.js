@@ -1,8 +1,7 @@
 "use strict";
 
 exports.install = function () {
-    F.restful('/drink_rfids/', [], json_drink_rfid_query, json_drink_rfid_get, json_drink_rfid_save, json_drink_rfid_delete);
-    F.cors('/drink_rfids/', [ 'GET', 'PUT', 'POST', 'DELETE', '*'], true);
+    F.restful('/drink_rfids/', ['cors'], json_drink_rfid_query, json_drink_rfid_get, json_drink_rfid_save, json_drink_rfid_delete);
 };
 
 /**

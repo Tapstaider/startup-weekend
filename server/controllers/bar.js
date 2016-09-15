@@ -1,8 +1,7 @@
 "use strict";
 
 exports.install = function () {
-    F.restful('/bars/', [], json_bar_query, json_bar_get, json_bar_save, json_bar_delete);
-    F.cors('/bars/', ['GET', 'POST', 'PUT', 'DELETE', '*'], true);
+    F.restful('/bars/', ['cors'], json_bar_query, json_bar_get, json_bar_save, json_bar_delete);
 };
 
 /**

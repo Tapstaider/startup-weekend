@@ -1,10 +1,8 @@
 "use strict";
 
 exports.install = function () {
-  F.route('/mybeer/{id}', my_beer, ['get']);
-    F.restful('/beers/', [], json_beer_query, json_beer_get, json_beer_save, json_beer_delete);
-    F.cors('/mybeer/{id}', ['GET',  '*'], true);
-    F.cors('/mybeer/', ['GET', 'POST', 'PUT', 'DELETE', '*'], true);
+  F.route('/mybeer/{id}', my_beer, ['get','cors']);
+  F.restful('/beers/', ['cors'], json_beer_query, json_beer_get, json_beer_save, json_beer_delete);
 };
 
 function my_beer(id){

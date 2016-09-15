@@ -1,8 +1,7 @@
 "use strict";
 
 exports.install = function () {
-    F.restful('/menus/', [], json_menu_query, json_menu_get, json_menu_save, json_menu_delete);
-    F.cors('/menus/', [ 'GET', 'PUT', 'POST', 'DELETE', '*'], true);
+    F.restful('/menus/', ['cors'], json_menu_query, json_menu_get, json_menu_save, json_menu_delete);
 };
 
 /**
