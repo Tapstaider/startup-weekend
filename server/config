@@ -4,6 +4,9 @@ version                         : 1.0.0
 secret                          : secret-key-for-web
 default-ip                      : 0.0.0.0
 default-port                    : 8000
+allow-compile-html              : false
+allow-compile-script            : false
+allow-compile-style             : false
 default-layout                  :
 directory-views                 : public
 

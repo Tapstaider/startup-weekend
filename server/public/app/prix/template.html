@@ -5,9 +5,9 @@
   		<div class="row mt">
   		<div class="col-lg-4" ng-repeat="(nomBiere,prixBiere) in bieres">
             <div class="content-panel" style="margin-bottom: 10px">
-                
+
                   <div style="text-align:center;">
-                    <img src="{{'image/beer/'+nomBiere+'.png'}}" alt="">
+                    <img ng-src="{{getImageBiere(nomBiere)}}" alt="">
                     <h4>{{nomBiere}}</h4>
                     <a href="" ng-click="incrementeBiere(nomBiere)" class="fa fa-arrow-up" aria-hidden="true" style="color: black"></a>
                   <p class="margin-left" style="padding-right: 10px">{{prixBiere}}</p>

@@ -3,6 +3,12 @@
 var app=angular.module('app');
 
 app.controller("ConsoController",["$scope","ConsoService",function($scope,ConsoService){
+	$scope.getImageBiere = function (nomBiere) {
+		if (nomBiere && nomBiere !== '') {
+			return 'image/beer/'+nomBiere+'.png';
+		}
+		return '';
+	}
 	$scope.bieres={};//{"Tripel Karmeliet":166,"1664":122,"Maredsous":55};
 	ConsoService.getConsumptions().then(function(response){
 		var conso=response.data.consumptions;
@@ -14,11 +20,11 @@ app.controller("ConsoController",["$scope","ConsoService",function($scope,ConsoS
 				}
 				$scope.bieres[response.data.beer.name]=$scope.bieres[response.data.beer.name]+1;
 			},function(data){
-			
+
 			});
 		}
-		
+
 	},function(data){
-	
+
 	});
 }]);

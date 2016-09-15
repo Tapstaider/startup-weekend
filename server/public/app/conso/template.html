@@ -5,9 +5,9 @@
   		<div class="row mt">
   		<div class="col-lg-4" ng-repeat="(nomBiere,quantiteBiere) in bieres">
             <div class="content-panel" style="margin-bottom: 10px">
-                
+
                   <div style="text-align:center;">
-                    <img src="{{'image/beer/'+nomBiere+'.png'}}" alt="">
+                    <img ng-src="{{getImageBiere(nomBiere)}}" alt="">
                     <h4>{{nomBiere}}</h4>
                     <p class="margin-left">{{quantiteBiere}} bières</p>
                     <img src="" alt="">
