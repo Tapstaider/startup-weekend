@@ -1,0 +1,30 @@
+diff --git a/server/public/app/conso/service.js b/server.b/public/app/conso/service.js
+index a3209c9..d56c3e1 100644
+--- a/server/public/app/conso/service.js
++++ b/server.b/public/app/conso/service.js
+@@ -4,10 +4,9 @@ var app=angular.module('app');
+ 
+ app.service("ConsoService",["$http",function($http){
+ 	this.getConsumptions=function(){
+-		return $http.get("http://localhost:8000/count_consumptions");
++		return $http.get("http://ec2-52-29-216-184.eu-central-1.compute.amazonaws.com:8000/count_consumptions");
+ 	};
+ 	this.getMyBeers=function(id){
+-		return $http.get("http://localhost:8000/mybeer/"+id);
++		return $http.get("http://ec2-52-29-216-184.eu-central-1.compute.amazonaws.com:8000/mybeer/"+id);
+ 	};
+ }]);
+-
+diff --git a/server/public/app/prix/service.js b/server.b/public/app/prix/service.js
+index 85c6d1d..fccaddd 100644
+--- a/server/public/app/prix/service.js
++++ b/server.b/public/app/prix/service.js
+@@ -4,7 +4,6 @@ var app=angular.module('app');
+ 
+ app.service("PrixService",["$http",function($http){
+ 	this.getBeers=function(){
+-		return $http.get("http://localhost:8000/beers");
++		return $http.get("http://ec2-52-29-216-184.eu-central-1.compute.amazonaws.com:8000/beers");
+ 	};
+ }]);
+-
