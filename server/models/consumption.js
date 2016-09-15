@@ -10,14 +10,12 @@ var Consumption = F.sequelize.define('consumption', {
   id_user: {
     type: F.Sequelize.BIGINT,
     allowNull: false,
-    references: '_user',
-    referencesKey: 'id'
+    references: { model: "_user", key: "id" }
   },
   id_drink_rfid: {
     type: F.Sequelize.BIGINT,
     allowNull: false,
-    references: 'drink_rfid',
-    referencesKey: 'id'
+    references: { model: "drink_rfid", key: "id" }
   },
   weight: {
     type: F.Sequelize.FLOAT

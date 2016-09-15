@@ -14,8 +14,7 @@ var Drink_rfid = F.sequelize.define('drink_rfid', {
   id_beer: {
     type: F.Sequelize.BIGINT,
     allowNull: false,
-    references: 'beer',
-    referencesKey: 'id'
+    references: { model: "beer", key: "id" }
   },
   capacity: {
     type: F.Sequelize.FLOAT,

@@ -4,6 +4,8 @@ version                         : 1.0.0
 secret                          : secret-key-for-web
 default-ip                      : 0.0.0.0
 default-port                    : 8000
+default-layout                  :
+directory-views                 : public
 
 // Mail settings
 mail.smtp                       : smtp.yourwebsite.com
@@ -17,6 +19,6 @@ database.name : tapstaid
 database.username : tapstaider
 database.password :supertomate
 database.host : localhost
-database.dialect : postgres
+database.dialect : sqlite
 database.pool : {"max": 5, "min": 0, "idle": 10000}
-database.storage.path : 
+database.storage.path : tapstaide.db

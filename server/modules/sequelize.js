@@ -31,6 +31,7 @@ exports.install = function(){
   F.sequelize = new Sequelize(database_name, username_database, password_database, {
     host: host_database,
     dialect: dialect_database,
-    pool : pool_database
+    pool : pool_database,
+    storage: storage_path_database
   });
 }

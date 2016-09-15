@@ -14,14 +14,12 @@ var Menu = F.sequelize.define('menu', {
   id_bar : {
     type: F.Sequelize.BIGINT,
     allowNull: false,
-    references: 'bar',
-    referencesKey: 'id'
+    references: { model: "bar", key: "id" }
   },
   id_beer : {
     type: F.Sequelize.BIGINT,
     allowNull: false,
-    references: 'beer',
-    referencesKey: 'id'
+    references: { model: "beer", key: "id" }
   }
 }, {
   freezeTableName: true
